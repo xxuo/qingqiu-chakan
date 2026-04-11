@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="request.check">
+    <!-- 网络访问权限 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+	<!-- 防止手机休眠 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <!-- 悬浮窗权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+	<!-- 运行前台服务 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <application
+        android:label="请求查看"
+        android:theme="@android:style/Theme.NoTitleBar"
+        android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="true"> <!-- 开启硬件加速，优化WebView性能 -->
+        <!-- 主Activity：支持外部调用打开链接 + 应用启动入口 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"> <!-- 避免屏幕旋转重建 -->
+            <!-- 应用启动入口 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <!-- 外部调用入口：支持其他应用（如微信）调用打开http/https链接 -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

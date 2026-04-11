@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 33
+    buildToolsVersion "33.0.0"
+    defaultConfig {
+        applicationId "request.check"
+        minSdkVersion 19
+        targetSdkVersion 33 // 确保 targetSdkVersion 与 compileSdkVersion 一致
+        versionCode 1
+        versionName "ʕ̯•͡˔•̯᷅ʔ"
+        resConfigs "zh"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // 添加签名配置并只启用 V2 签名
+            signingConfig signingConfig signingConfig signingConfigs.debug
+        debug {
+            storeFile file("debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        release {
+            storeFile file("debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+            }
+            signingConfig signingConfigs.releaseSigning
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        disable 'SomeLintRule'
+    }
+}
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+}
+task cleanProject(type: Delete) {
+    delete rootProject.buildDir
+}

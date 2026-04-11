@@ -1,0 +1,14 @@
+{
+  "name": "请求查看",
+  "type": "Android Application",
+  "package": "com.example.请求查看",
+  "created_date": "2026-04-11",
+  "java_files": [
+    "app\\src\\main\\java\\request\\check\\MainActivity.java"
+  ],
+  "resource_files": [
+    "app\\proguard-resources.json",
+    "app\\src\\main\\AndroidManifest.xml"
+  ],
+  "total_files": 3
+}
